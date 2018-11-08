@@ -6,11 +6,15 @@ import {
   UserProfile,
 } from '@loopback/authentication';
 import { BasicStrategy } from 'passport-http';
+import { repository } from '@loopback/repository';
+import { UserRepository } from '../repositories';
 
 export class MyAuthStrategyProvider implements Provider<Strategy | undefined> {
   constructor(
     @inject(AuthenticationBindings.METADATA)
     private metadata: AuthenticationMetadata,
+    @repository(UserRepository)
+    private userRepository: UserRepository,
   ) { }
 
   value(): ValueOrPromise<Strategy | undefined> {
@@ -27,13 +31,16 @@ export class MyAuthStrategyProvider implements Provider<Strategy | undefined> {
     }
   }
 
-  verify(
+  verify = (
     username: string,
     password: string,
     cb: (err: Error | null, user?: UserProfile | false) => void,
-  ) {
+  ) => {
     // find user by name & password
-    // call cb(null, false) when user not found
-    // call cb(null, user) when user is authenticated
+    this.userRepository.find({ where: { email: username, password } }).then(payload => {
+      cb(null, payload.length ? payload[0] : false)
+    }, err => {
+      cb(err, false)
+    })
   }
 }
