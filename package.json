@@ -44,6 +44,7 @@
     "src"
   ],
   "dependencies": {
+    "@loopback/authentication": "^1.0.2",
     "@loopback/boot": "^1.0.2",
     "@loopback/context": "^1.0.0",
     "@loopback/core": "^1.0.0",
@@ -51,11 +52,15 @@
     "@loopback/repository": "^1.0.2",
     "@loopback/rest": "^1.1.0",
     "@loopback/service-proxy": "^1.0.0",
-    "memory": "0.0.3"
+    "memory": "0.0.3",
+    "passport": "^0.4.0",
+    "passport-http": "^0.3.0"
   },
   "devDependencies": {
     "@loopback/build": "^1.0.0",
     "@loopback/testlab": "^1.0.0",
-    "@types/node": "^10.11.2"
+    "@types/node": "^10.11.2",
+    "@types/passport": "^0.4.7",
+    "@types/passport-http": "^0.3.6"
   }
 }
