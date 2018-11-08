@@ -1,0 +1,10 @@
+{
+  "ids": {
+    "User": 1
+  },
+  "models": {
+    "User": {
+      "user-1": "{\"id\":\"user-1\",\"name\":\"user1\",\"email\":\"user1@test.com\",\"password\":\"1234\"}"
+    }
+  }
+}
